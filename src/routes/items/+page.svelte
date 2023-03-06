@@ -1,13 +1,23 @@
 <script lang="ts">
-	import type {Item} from "$lib/types/item";
+	import type { PageData } from './$types';
 
-	let items: Item[] = [];
+	export let data: PageData;
+	$: items = data.items;
+
 </script>
 
-<h1>Items</h1>
+<div class="flex flex-col justify-center items-center mt-8">
+	<div class="flex flex-col justify-center items-center border border-purple-400 p-2">
+		<h1 class="text-2xl text-purple-600 font-semibold">Items</h1>
 
-<ul>
-	{#each items as item, key}
-		<li>{item.id}: {item.name}</li>
-	{/each}
-</ul>
+		<ul class=" p-2 space-y-2">
+			{#each items as item, key}
+				<li class="border border-purple-300 rounded-lg p-2">{item.id}: {item.name}</li>
+			{/each}
+		</ul>
+
+		<button on:click={addItem} class="btn ">Add Item</button>
+	</div>
+
+</div>
+
